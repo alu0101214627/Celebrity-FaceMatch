@@ -10,4 +10,7 @@ This application tells you which famous person you look like the most just uploa
 5. The next time you can just click on run from the ide.
 
 ### Documentation
-* For extra documentation go [here]()
+* For extra documentation go [here](https://github.com/alu0101214627/Celebrity-FaceMatch/tree/master/doc)
+
+### License
+* GNU GPLv3 license (for more information go [here](https://choosealicense.com/licenses/gpl-3.0/))
