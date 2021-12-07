@@ -69,7 +69,7 @@ public static final long serialVersionUID = 1L;
 		title.setFont(new Font("Tahoma", Font.BOLD, 26));
 		title.setBounds(120, 15, 550, 62);
 		contentPane.add(title);
-		text = new JLabel("Upload a photo of yourselt and find out which celebrity you look like");
+		text = new JLabel("Upload a photo of yourself and find out which celebrity you look like");
 		text.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		text.setBounds(60, 84, 638, 30);
 		contentPane.add(text);
