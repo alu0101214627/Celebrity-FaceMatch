@@ -6,6 +6,8 @@
 */
 package gui;
 
+import agents.PerceptionAgent;
+
 
 /*! The class which will interact with the upcoming windows (graphic interface)*/
 public class MainGui extends Thread {
@@ -23,11 +25,11 @@ public class MainGui extends Thread {
 	 * @param title
 	 * @see run()
 	 */
-	public MainGui(String title) {
+	public MainGui(String title, PerceptionAgent agent) {
 		
 		
 		this.title = title;
-		this.frame = new JFrameApp(title);
+		this.frame = new JFrameApp(title, agent);
 	}
 	/**
 	 * The method which runs the interface and makes it visible

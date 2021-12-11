@@ -6,6 +6,7 @@
 */
 
 package gui;
+import agents.PerceptionAgent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 /*! The class which define the features of the upcoming window*/
 public class JFrameApp extends JFrame implements ActionListener {
@@ -44,12 +46,15 @@ public static final long serialVersionUID = 1L;
 	public JLabel result1, result2, result3;
 	public JLabel results;
 	
+	protected PerceptionAgent agent;
+	
 	/**
 	 * The constructor, here it is created the window
 	 * @param name
 	 */
-	public JFrameApp(String name) {
+	public JFrameApp(String name, PerceptionAgent agent) {
 		super();
+		this.agent = agent;
 		
 		/** These instructions create the window with the dimensions
 		 * and borders that we specify.
@@ -69,7 +74,7 @@ public static final long serialVersionUID = 1L;
 		title.setFont(new Font("Tahoma", Font.BOLD, 26));
 		title.setBounds(120, 15, 550, 62);
 		contentPane.add(title);
-		text = new JLabel("Upload a photo of yourself and find out which celebrity you look like");
+		text = new JLabel("Upload a photo of yourselfand find out which celebrity you look like");
 		text.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		text.setBounds(60, 84, 638, 30);
 		contentPane.add(text);
@@ -122,10 +127,6 @@ public static final long serialVersionUID = 1L;
         contentPane.add(calculating);
 	}
 	
-	public void ActionPerformed() {
-		
-	}
-
 	/**
 	 * The method that is called when we interact with the interface
 	 * @param event
@@ -146,7 +147,6 @@ public static final long serialVersionUID = 1L;
 				int selection = fileChooser.showOpenDialog(this);
 				if (selection == JFileChooser.APPROVE_OPTION) {
 					file = fileChooser.getSelectedFile();
-					//imageUploaded.setIcon(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()));
 					
 					ImageIcon i = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());
 					Image img = i.getImage();
@@ -165,12 +165,12 @@ public static final long serialVersionUID = 1L;
 		} if (eventObject == ConfirmButton) {
 			calculating.setVisible(true);
 			
-			/*try {
+			try {
 				agent.sendMessage(file);
 				
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}*/
+			}
 		}
 		
 	}
