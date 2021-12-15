@@ -1,3 +1,9 @@
+/**
+* @file Utils.java
+* @Author Jorge Hdez. Batista
+* @date 13/12/21
+* @brief Class of assistant methods that will keep our code clean.
+*/
 package agents;
 
 import jade.content.lang.sl.SLCodec;
@@ -19,21 +25,21 @@ public class Utils
 {
 	
 	/**
-     * Permite buscar los agents que dan un servicio de un determinado tipo. Devuelve el primero de ellos.
-     * @param agent Agentes desde el que se realiza la búsqueda
-     * @param tipo Tipo de servicio buscado
-     * @return Primer agente que proporciona el servicio
+     * It allows to search the agents which offer a concrete type service.
+     * @param agent Agent where it starts the research
+     * @param tipo Type of searched service
+     * @return First found agent
      */
     protected static DFAgentDescription buscarAgente(Agent agent, String tipo)
     {
-        //indico las caracteristicas el tipo de servicio que quiero encontrar
+        //We indicate the type of the agent that we are looking for
         DFAgentDescription template=new DFAgentDescription();
         ServiceDescription templateSd=new ServiceDescription();
-        templateSd.setType(tipo); //como define el tipo el agente coordinador tamiben podriamos buscar por nombre
+        templateSd.setType(tipo);
         template.addServices(templateSd);
         
         SearchConstraints sc = new SearchConstraints();
-        sc.setMaxResults(new Long(1));
+        sc.setMaxResults(new Long(1)); //Since java version 9 Long version is deprecated
         
         try
         {
@@ -43,7 +49,7 @@ public class Utils
                 DFAgentDescription dfd = results[i];
                 AID provider = dfd.getName();
                     
-                //un mismo agente puede proporcionar varios servicios, solo estamos interasados en "tipo"
+                //An agent can offer different services, we are only interested in the type we are looking for
                 Iterator it = dfd.getAllServices();
                 while (it.hasNext()) {
                     ServiceDescription sd = (ServiceDescription) it.next();

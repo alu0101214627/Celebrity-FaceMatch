@@ -16,10 +16,17 @@ import jade.wrapper.StaleProxyException;
 
 import agents.*;
 
+/*! The main file of the application, which will run first and start all the necessary processes*/
 public class Launcher {
 	
+	/** A AgentContainer type
+	 *  The place where all the agents of the application will be created and stored
+	 */
 	private static jade.wrapper.AgentContainer cc;
-	
+	/**
+	 * The program which initializes the JADE platform and the agents
+	 *
+	 */
 	private static void loadBoot() {
 		
 		jade.core.Runtime rt = jade.core.Runtime.instance();

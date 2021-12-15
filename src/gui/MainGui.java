@@ -22,7 +22,8 @@ public class MainGui extends Thread {
 
 	/**
 	 * The constructor, here it is created the interface
-	 * @param title
+	 * @param title the name of the upcoming window
+	 * @param agent agent that have created the GUI (perceptionAgent)
 	 * @see run()
 	 */
 	public MainGui(String title, PerceptionAgent agent) {

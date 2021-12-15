@@ -50,7 +50,8 @@ public static final long serialVersionUID = 1L;
 	
 	/**
 	 * The constructor, here it is created the window
-	 * @param name
+	 * @param name of the upcoming window
+	 * @param agent that have created the GUI (perceptionAgent)
 	 */
 	public JFrameApp(String name, PerceptionAgent agent) {
 		super();

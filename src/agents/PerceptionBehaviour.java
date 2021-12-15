@@ -1,3 +1,9 @@
+/**
+* @file PerceptionBehaviour.java
+* @Author Jorge Hdez. Batista
+* @date 13/12/21
+* @brief Class of the behaviour of the agent that interacts with the GUI
+*/
 package agents;
 
 //import com.clarifai.grpc.api.Output;
@@ -11,8 +17,17 @@ import gui.MainGui;
 
 public class PerceptionBehaviour extends CyclicBehaviour {
 	
+	/** A long type
+	 *  The identifier of the agent
+	 */
 	private static final long serialVersionUID = 1L;
+	/** An agent type
+	 *  It will contain the agent that ave created the GUI
+	 */
     PerceptionAgent agent;
+    /** A MainGui type
+	 *  It will store our GUI so we can acces to it from here
+	 */
     MainGui gui;
     
     public PerceptionBehaviour(PerceptionAgent a, MainGui gui) {
@@ -20,7 +35,9 @@ public class PerceptionBehaviour extends CyclicBehaviour {
         this.gui = gui;
     }
     
-	@Override
+    /** AUN POR COMENTAR
+	 * The method that runs the behaviour of the PerceptionAgent
+	 */
 	public void action() {
         ACLMessage msg = agent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM_REF));
         
