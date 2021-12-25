@@ -47,6 +47,9 @@ public class MainGui extends Thread {
 		frame.setVisible(true);	
 	}
 	
+	/**
+	 * The method which show the results, it only calls the JFrameApp
+	 */
 	public void showResults(String name1, String name2, String name3) {
 		frame.ShowResults(name1, name2, name3);
 	}

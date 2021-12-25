@@ -22,11 +22,11 @@ public class PerceptionBehaviour extends CyclicBehaviour {
 	 */
 	private static final long serialVersionUID = 1L;
 	/** An agent type
-	 *  It will contain the agent that ave created the GUI
+	 *  It will contain the agent that have created the GUI
 	 */
     PerceptionAgent agent;
     /** A MainGui type
-	 *  It will store our GUI so we can acces to it from here
+	 *  It will store our GUI so we can access to it from here
 	 */
     MainGui gui;
     
@@ -35,15 +35,19 @@ public class PerceptionBehaviour extends CyclicBehaviour {
         this.gui = gui;
     }
     
-    /** AUN POR COMENTAR
+    /**
 	 * The method that runs the behaviour of the PerceptionAgent
 	 */
 	public void action() {
+		//We prepare the message that will be received by the behaviour agent with the information from the computation agent
         ACLMessage msg = agent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM_REF));
         
+        /**
+         * We decapsulate the information from the message and we send it to the Graphich Interface
+         */
         try {
         	Output output = (Output) msg.getContentObject();
-        	System.out.println(output.getData().getConcepts(0).getName());
+        	//System.out.println(output.getData().getConcepts(0).getName());
             gui.showResults(output.getData().getConcepts(0).getName(), output.getData().getConcepts(1).getName(), output.getData().getConcepts(2).getName());
             
 		} catch (UnreadableException e) {

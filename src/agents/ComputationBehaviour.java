@@ -24,30 +24,44 @@ import java.nio.file.Files;
 
 public class ComputationBehaviour extends Behaviour {
 	
+	/** A long type
+	 *  The identifier of the agent
+	 */
 	private static final long serialVersionUID = 1L;
+	/** An agent type
+	 *  It will contain the agent that have created the GUI
+	 */
 	ComputationAgent agent;
 	
     public ComputationBehaviour(ComputationAgent a) {
         this.agent = a;
     }
     
-    @Override
+    /**
+	 * The method that runs the behaviour of the ComputationAgent
+	 */
     public void action() {
 
+    	//We prepare the message that will be received by the behaviour agent with the information from the perception agent
         ACLMessage message = agent.blockingReceive();
         File imagen = null;
         
+        //We convert the message received into a image to send it to the external API
         try {
-            imagen = (File) message.getContentObject();
-            
+            imagen = (File) message.getContentObject();    
         } catch (UnreadableException e) {
             e.printStackTrace();
         }
 
+        /** We connect with the external application, the code starting by "bed95...4a6"
+         * is the key of the API we will use to have our answer 
+         */
         V2Grpc.V2BlockingStub stub = V2Grpc.newBlockingStub(ClarifaiChannel.INSTANCE.getGrpcChannel())
                 .withCallCredentials(new ClarifaiCallCredentials("bed953637af7480e861b7800ff1074a6"));
 
-
+        /** We prepare the answer creating it and connecting with the model (the code starting by "cfbb1...fe20")
+         * and giving it the input we alredy have (the image uploaded by the user) in the format it is needed
+         */
         MultiOutputResponse response = null;
         try {
             response = stub.postModelOutputs(PostModelOutputsRequest.newBuilder().setModelId("cfbb105cb8f54907bb8d553d68d9fe20").addInputs(
@@ -56,13 +70,14 @@ public class ComputationBehaviour extends Behaviour {
             e.printStackTrace();
         }
 
+        // We make sure the model have gone correct, and the answer is now ready to be send
         if (response.getStatus().getCode() != StatusCode.SUCCESS) {
             throw new RuntimeException("Post model outputs failed, status: " + response.getStatus());
         }
 
         Output output = response.getOutputs(0);
 
-        //Prepara el mensaje y lo envia
+        //We prepare the message to inform the PerceptionAgent we alredy have the answer of its request
         ACLMessage resultado = new ACLMessage(ACLMessage.INFORM_REF);
         try {
             resultado.setContentObject(output);
@@ -78,7 +93,6 @@ public class ComputationBehaviour extends Behaviour {
 
     }
     
-    @Override
     public boolean done() {
         return false;
     }

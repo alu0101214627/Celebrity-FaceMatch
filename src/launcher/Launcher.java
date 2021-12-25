@@ -10,7 +10,6 @@ package launcher;
 
 import jade.core.Profile;
 import jade.core.ProfileImpl;
-import gui.MainGui;
 import java.io.IOException;
 import jade.wrapper.StaleProxyException;
 
@@ -29,16 +28,20 @@ public class Launcher {
 	 */
 	private static void loadBoot() {
 		
+		/**
+		 * We create the container of the agents that will form part of our MultiAgent System
+		 * so, we need to use the object from JADE library and send with it a Profile Implementation
+		 * which will be useful to launch different containers and avoid the conflict between them
+		 */
 		jade.core.Runtime rt = jade.core.Runtime.instance();
         rt.setCloseVM(true);
         Profile profile = new ProfileImpl(null, 1200, null);
         cc = rt.createMainContainer(profile);
         
-        try {
-            ProfileImpl pContainer = new ProfileImpl(null, 1200, null);
-            rt.createAgentContainer(pContainer);
-            
-			// Iniciación de Agentes
+        /**
+		 * We create the agents, starting from the agents container, and sending all the information to identify the agent
+		 */
+        try {            
             cc.createNewAgent(PerceptionAgent.NICKNAME, PerceptionAgent.class.getName(), new Object[]{"0"}).start();
             cc.createNewAgent(ComputationAgent.NICKNAME, ComputationAgent.class.getName(), new Object[]{"0"}).start();
         } catch (StaleProxyException e) {

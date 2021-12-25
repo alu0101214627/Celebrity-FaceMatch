@@ -6,19 +6,13 @@
 */
 package agents;
 
-import jade.content.lang.sl.SLCodec;
-import jade.core.AID;
 import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.Envelope;
 import jade.domain.FIPAAgentManagement.SearchConstraints;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.lang.acl.ACLMessage;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.Iterator;
 
 public class Utils 
@@ -32,29 +26,34 @@ public class Utils
      */
     protected static DFAgentDescription buscarAgente(Agent agent, String tipo)
     {
-        //We indicate the type of the agent that we are looking for
+        //We create the template that we will need to search an agent based on its type
         DFAgentDescription template=new DFAgentDescription();
         ServiceDescription templateSd=new ServiceDescription();
         templateSd.setType(tipo);
         template.addServices(templateSd);
         
+        //Here there are specified the max number of results (agents) we want to return 
         SearchConstraints sc = new SearchConstraints();
-        sc.setMaxResults(new Long(1)); //Since java version 9 Long version is deprecated
+        sc.setMaxResults(new Long(1));
         
+        /**
+         * Based on the search constraints, the type, and the template,
+         * we will find the agent we are looking for
+         */        
         try
         {
             DFAgentDescription [] results = DFService.search(agent, template, sc);
+            DFAgentDescription dfd;
             for (int i = 0; i < results.length; ++i) 
             {
-                DFAgentDescription dfd = results[i];
-                AID provider = dfd.getName();
-                    
                 //An agent can offer different services, we are only interested in the type we are looking for
-                Iterator it = dfd.getAllServices();
+            	dfd = results[i];
+            	Iterator it = dfd.getAllServices();
                 while (it.hasNext()) {
                     ServiceDescription sd = (ServiceDescription) it.next();
                     if (sd.getType().equals(tipo)) {
-                        System.out.println("- Servicio \"" + sd.getName() + "\" proporcionado por el agente "+ provider.getName());
+                    	//AID provider = dfd.getName();
+                        //System.out.println("- Servicio \"" + sd.getName() + "\" proporcionado por el agente "+ provider.getName());
                         return dfd;
                     }
                 }

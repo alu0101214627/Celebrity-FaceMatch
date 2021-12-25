@@ -127,6 +127,10 @@ public static final long serialVersionUID = 1L;
 		calculating.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(calculating);
         
+        
+        /**These instructions configure where the results will appear
+         * when the answer from the computation behaviour is ready
+		 */	
         results = new JLabel("");
 		results.setBounds(338, 175, 350, 50);
 		results.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -134,6 +138,10 @@ public static final long serialVersionUID = 1L;
 		results.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(results);
 		
+        
+        /**These following instructions prepare the text that will show
+         * the celebrities in the Graphic Interface
+		 */	
 		result1 = new JLabel("");
 		result1.setBounds(350, 225, 300, 50);
 		result1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -162,6 +170,9 @@ public static final long serialVersionUID = 1L;
 	 */
 	public void actionPerformed(ActionEvent event) {
 		Object eventObject = event.getSource();
+		/**
+		 * Here we create the environment where the user clicks on "Upload Image" or "Change Image"
+		 */
 		if (eventObject == UploadButton || eventObject == ChangeButton) {
 			try {
 				results.setVisible(false);
@@ -191,6 +202,9 @@ public static final long serialVersionUID = 1L;
 			} catch (Exception exception) {
 				System.err.println("Error al adjuntar la imagen");
 			}
+		/**
+		* If the button clicked is the "Confirm Image"
+		*/
 		} if (eventObject == ConfirmButton) {
 			calculating.setVisible(true);
 			
@@ -203,7 +217,12 @@ public static final long serialVersionUID = 1L;
 		}
 		
 	}
-	
+	/**
+	 * Where the results are ready to be shown this method it's called, showing the information to the user
+	 * @param name1 the celebrity the person looks like the most
+	 * @param name2 the second celebrity the person looks like the most
+	 * @param name3 the celebrity the person looks like the less
+	 */
 	public void ShowResults(String name1, String name2, String name3) {
     	calculating.setVisible(false);
 				

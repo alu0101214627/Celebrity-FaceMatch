@@ -64,9 +64,10 @@ public class PerceptionAgent extends Agent {
 		//We run the behaviour that the agent will have
 		addBehaviour(new PerceptionBehaviour(this, gui));
 	}
-	/** AUN POR COMENTAR
+	/**
 	 * The method that allow us to create a message and send it anywhere
-	 * @param 
+	 * @param File the image uploaded by the user, which is send to the agent
+	 * which is offering the "computo" service
 	 */
 	public void sendMessage(File file) throws IOException {
 		DFAgentDescription dfd = Utils.buscarAgente(this, "Computo");
