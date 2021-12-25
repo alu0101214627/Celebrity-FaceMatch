@@ -6,7 +6,7 @@
 */
 package agents;
 
-//import com.clarifai.grpc.api.Output;
+import com.clarifai.grpc.api.Output;
 
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -41,13 +41,14 @@ public class PerceptionBehaviour extends CyclicBehaviour {
 	public void action() {
         ACLMessage msg = agent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM_REF));
         
-        /*try {
-        	Output output = (Output) msg.getContentObject();            
+        try {
+        	Output output = (Output) msg.getContentObject();
+        	System.out.println(output.getData().getConcepts(0).getName());
             gui.showResults(output.getData().getConcepts(0).getName(), output.getData().getConcepts(1).getName(), output.getData().getConcepts(2).getName());
             
 		} catch (UnreadableException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 }

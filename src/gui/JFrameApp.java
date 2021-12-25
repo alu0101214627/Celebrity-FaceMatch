@@ -126,6 +126,34 @@ public static final long serialVersionUID = 1L;
 		calculating.setVisible(false);
 		calculating.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(calculating);
+        
+        results = new JLabel("");
+		results.setBounds(338, 175, 350, 50);
+		results.setFont(new Font("Tahoma", Font.BOLD, 15));
+		results.setVisible(true);
+		results.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(results);
+		
+		result1 = new JLabel("");
+		result1.setBounds(350, 225, 300, 50);
+		result1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		result1.setVisible(true);
+		result1.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(result1);
+        
+		result2 = new JLabel("");
+		result2.setBounds(350, 275, 300, 50);
+		result2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		result2.setVisible(true);
+		result2.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(result2);
+        
+		result3 = new JLabel("");
+		result3.setBounds(350, 325, 300, 50);
+		result3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		result3.setVisible(true);
+		result3.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(result3);
 	}
 	
 	/**
@@ -136,10 +164,10 @@ public static final long serialVersionUID = 1L;
 		Object eventObject = event.getSource();
 		if (eventObject == UploadButton || eventObject == ChangeButton) {
 			try {
-				/*results.setVisible(false);
+				results.setVisible(false);
 				result1.setVisible(false);
 				result2.setVisible(false);
-				result3.setVisible(false);*/
+				result3.setVisible(false);
 				
 				JFileChooser fileChooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "gif", "png", "jpeg");
@@ -174,6 +202,20 @@ public static final long serialVersionUID = 1L;
 			}
 		}
 		
+	}
+	
+	public void ShowResults(String name1, String name2, String name3) {
+    	calculating.setVisible(false);
+				
+    	results.setText("The celebrities you look like the most are:");
+    	result1.setText("1.- " + name1);
+		result2.setText("2.- " + name2);
+		result3.setText("3.- " + name3);
+		
+		results.setVisible(true);
+		result1.setVisible(true);
+		result2.setVisible(true);
+		result3.setVisible(true);
 	}
 
 }

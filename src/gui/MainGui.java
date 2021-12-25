@@ -46,5 +46,9 @@ public class MainGui extends Thread {
 		frame.setResizable(false);
 		frame.setVisible(true);	
 	}
+	
+	public void showResults(String name1, String name2, String name3) {
+		frame.ShowResults(name1, name2, name3);
+	}
 
 }

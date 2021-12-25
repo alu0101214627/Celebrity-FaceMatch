@@ -40,6 +40,7 @@ public class Launcher {
             
 			// Iniciación de Agentes
             cc.createNewAgent(PerceptionAgent.NICKNAME, PerceptionAgent.class.getName(), new Object[]{"0"}).start();
+            cc.createNewAgent(ComputationAgent.NICKNAME, ComputationAgent.class.getName(), new Object[]{"0"}).start();
         } catch (StaleProxyException e) {
             e.printStackTrace();
             System.exit(1);
