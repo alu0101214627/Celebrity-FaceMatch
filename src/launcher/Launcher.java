@@ -24,7 +24,6 @@ public class Launcher {
 	private static jade.wrapper.AgentContainer cc;
 	/**
 	 * The program which initializes the JADE platform and the agents
-	 *
 	 */
 	private static void loadBoot() {
 		

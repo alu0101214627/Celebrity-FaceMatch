@@ -1,5 +1,8 @@
 /bin/
 /.settings/
+/target/
+APDescription.txt
+MTPs-Main-Container.txt
 images/Jorge Hernández.jpg
 images/badBunny.jpg
 images/billGates.jpg
