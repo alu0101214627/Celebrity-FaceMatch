@@ -6,7 +6,8 @@ This application tells you which famous person you look like the most just uploa
 #### Linux:
 1. Download the .zip file called CelebrityFaceMatchAPP.zip
 2. Extract the .jar file from the .zip file
-3. Intsall the correspondent version of jdk to be able to use all the libraries with $ sudo apt-get install openjdk-11-jre
+3. Install the correspondent version of jdk to be able to use all the libraries with:
+      $ sudo apt-get install openjdk-11-jre
 4. Go to the folder when you have extracted it with the terminal
 5. Run $ java -jar CelebrityFaceMatchAPP.jar
 
